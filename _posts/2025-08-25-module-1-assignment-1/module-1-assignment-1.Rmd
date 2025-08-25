@@ -2,7 +2,7 @@
 title: "Module 1 Assignment 1"
 description: |
   Blog Setup & Data Visualization Analysis
-preview: ![](M1A1_Visualization.png)
+preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-08-25-module-1-assignment-1/M1A1_Visualization.png?raw=true
 author:
   - name: Skylar Walsh
 date: 2025-08-25
