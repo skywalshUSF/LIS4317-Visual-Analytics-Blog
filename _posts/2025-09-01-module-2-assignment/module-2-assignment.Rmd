@@ -2,7 +2,7 @@
 title: "Module 2 Assignment"
 description: |
   My Geographic Map of Florida Afterschool Meal Program Sites by County
-preview:
+preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-09-01-module-2-assignment/Sheet1resized.png?raw=true
 author:
   - name: Skylar Walsh
 date: 2025-09-01
