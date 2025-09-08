@@ -2,7 +2,7 @@
 title: "Module 3: Refined Map with Color"
 description: |
   My Geographic Map with the use of Adobe Illustrator and color principles.
-preview:
+preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-09-08-module-3-assignment/mod3.png?raw=true
 author:
   - name: Skylar Walsh
 date: 2025-09-08
