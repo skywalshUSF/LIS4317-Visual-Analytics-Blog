@@ -2,7 +2,7 @@
 title: "Module 4: Time Series Visualization with Tableau Public"
 description: |
   My time series visualization using Tableau Public.
-preview: 
+preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-09-19-module-4-assignment/Mod4.png?raw=true
 author:
   - name: Skylar Walsh
 date: 2025-09-19
