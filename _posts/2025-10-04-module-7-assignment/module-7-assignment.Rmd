@@ -2,7 +2,7 @@
 title: "Module 7: Visual Distribution Analysis in R"
 description: |
   Creating visualizations in R that are based on distribution analysis
-preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-10-03-module-6-assignment/SW_LIS4317mod6.png?raw=true
+preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-10-04-module-7-assignment/LIS4317_mod7.png?raw=true
 author:
   - name: Skylar Walsh
 date: 2025-10-04
