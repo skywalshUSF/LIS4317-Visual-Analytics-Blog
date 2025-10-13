@@ -2,7 +2,7 @@
 title: "Module 8: Correlation Analysis & ggplot2"
 description: |
   Correlation and regression analysis using ggplot2
-preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-10-04-module-7-assignment/LIS4317_mod7.png?raw=true
+preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-10-11-module-8-assignment/corr2.jpg?raw=true
 author:
   - name: Skylar Walsh
 date: 2025-10-13
