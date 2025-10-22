@@ -2,10 +2,10 @@
 title: "Module 9: Visualizing Multivariate Data"
 description: |
   With ggplot2 and Corrgram
-preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-10-11-module-8-assignment/corr2.jpg?raw=true
+preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-10-22-module-9-assignment/mod9vis.png?raw=true
 author:
   - name: Skylar Walsh
-date: 2025-10-18
+date: 2025-10-22
 output:
   distill::distill_article:
     self_contained: false
