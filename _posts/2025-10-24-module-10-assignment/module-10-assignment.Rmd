@@ -2,7 +2,7 @@
 title: "Module 10: Time Series and Visualization"
 description: |
   ggplot2 and time series
-preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-10-22-module-9-assignment/mod9vis.png?raw=true
+preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-10-24-module-10-assignment/time_series.png?raw=true
 author:
   - name: Skylar Walsh
 date: 2025-10-24
