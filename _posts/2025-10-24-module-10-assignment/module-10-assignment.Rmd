@@ -5,7 +5,7 @@ description: |
 preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-10-24-module-10-assignment/time_series.png?raw=true
 author:
   - name: Skylar Walsh
-date: 2025-10-24
+date: 2025-10-26
 output:
   distill::distill_article:
     self_contained: false
@@ -17,15 +17,50 @@ knitr::opts_chunk$set(echo = FALSE)
 
 1.  Review the reading resources and post on your blog a new entry with your work with ggplot2 and time series (try yourself) and discuss the input of visualization on time series analysis.
 
-Here is a png file of a bar graph time series visualization I created using ggplot2:
+```{r echo=TRUE}
+# Load ggplot2 library for the visualization's dataset and plot
+library(ggplot2)
 
-[![](Mod10Vis.png)](Mod10Vis.png)
+# Load the economics dataset and store the results in a dataframe
+data("economics")
+myDF <- economics
 
-The visualization above provides useful input for time series analysis. The bar graph style allowed me to instantly identify trend and cycles, levels, and changes. By plotting annual averages, the bar chart clearly shows a long term trend with an upward shift in total unemployment until late 2012, and economic cycles with multiple years. The height of the bars showed an absolute level of unemployment, emphasizing areas where the level changed drastically. While a line chart shows a short-term x-axis time series better, a bar chart of annual averages properly measures how much the unemployment rate changed year after year.
+# Explore the structure and statistics of the dataframe
+str(myDF)
+summary(myDF)
 
-Before considering using a forecasting model like ARIMA, I wanted to use a simple visualization style to confirm assumptions about the data. One of these assumptions was stationarity, which I learned from one of the supplementary materials of this module. In the case of my visualization, the unemployment series is not stationary because the trend can shift upward or downward over the decades, which told me that I need to use differencing before starting to model. Another assumption is the model choice. Observing the patterns of peaks and troughs helped me out with the selection of model order.
+# Create a simple bar chart that visualizes the average number of unemployed
+# in thousands by year from 1967 until 2012
+ggplot(myDF, aes(x = date, y = unemploy)) +
+  geom_col()
 
-Finally, it is easy to communicate my findings of this visualization. The simple, clean bar chart can help provide information to those who may not understand the mathematical models. Also, by including the title, axis labels, and the dashed line for the historical average, the bar chart immediately tells a story. The story in my case is that late 2008 unemployment peaked far above the historical average due to a financial crisis. The visualization easily supports the narrative that certain years represent significant, economic periods.
+# This is the basic bar chart that ggplot2 generated. It contains x axis and y
+# axis labels, date for the 'date' variable, along with labels of numeric year
+# by decade, and unemploy for the 'unemploy' variable, along with a numeric scale
+# from 0-15000 to show the measurement of the y axis values.
+```
+The visualization above provides useful input for time series analysis. The bar graph style allowed me to instantly identify trend and cycles, levels, and changes. By plotting annual averages, the bar chart clearly shows a long term trend with an upward shift in total unemployment until late 2012, and economic cycles with multiple years. The height of the bars showed an absolute level of unemployment, emphasizing areas where the level changed drastically. While a line chart shows continuous changes on the x-axis time series better, a bar chart of annual averages properly measures how much the unemployment rate changed year after year.
+
+Before considering adding a trend line using time series forecasting, I wanted to use a simple visualization style to confirm assumptions about the data. One of these assumptions was stationarity, which I learned from one of the supplementary materials of this module. In the case of my visualization, the unemployment time series is not stationary because the trend can shift upward or downward over the decades. Observing the patterns of peaks and troughs helped me out with improving the layers of the bar chart to more accurately represent the time series changes in unemployment over time.
+
+```{r echo=TRUE}
+# Add color and a time series line to help observe the patterns of the time series
+# data. Also, improve the title of the chart and x and y labels.
+ggplot(myDF, aes(x = date, y = unemploy)) +
+  geom_col(fill="#baeeba",color="transparent") + 
+  geom_line(color="darkred") + 
+  stat_smooth() + 
+# Set the labels and a strong, accurate title
+labs(
+  title = "Average Unemployment from 1967-2012",
+  subtitle = "Bar chart with time series regression line",
+  x = "Year",
+  y = "Average Unemployed - in Thousands"
+)
+```
+It is easier to communicate findings and interpret the data with this visualization. The graph has a clear graph title and subtitle narrative, there are fill colors on the bars that are visually appealing, and some trend lines.
+
+Using the geom_col() layer, I was able to add a green fill color to the bars of the graph that pertains to the narrative. There are two different trend line layers that have been used: geom_line() and stat_smooth(). The purpose of geom_line() with the red line is to take all y values and make a y value for every x value and connect the points. The red line at the top of the column bars connects into a line, helping with interpretation. The purpose of stat_smooth() with the blue line is to show a smooth, time series regression line. It takes the averages of the y values, and plots them into a smooth trend line, assisting in forecasting, hypothesis testing, and simulation.
 
 
 
