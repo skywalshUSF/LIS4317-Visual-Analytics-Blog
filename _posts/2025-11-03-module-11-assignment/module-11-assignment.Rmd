@@ -2,7 +2,7 @@
 title: "Module 11: Edward R. Tufte"
 description: |
   Tufte and C. Minard in R
-preview:
+preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-11-03-module-11-assignment/Mod11Vis.png?raw=true
 author:
   - name: Skylar Walsh
     url: {}
