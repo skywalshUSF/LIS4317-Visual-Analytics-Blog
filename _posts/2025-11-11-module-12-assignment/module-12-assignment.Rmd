@@ -2,7 +2,7 @@
 title: "Module 12: Social Network Analysis"
 description: |
   Introduction to Python/Plotnine
-preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-11-03-module-11-assignment/Mod11Vis.png?raw=true
+preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-11-11-module-12-assignment/mod12graph.png?raw=true
 author:
   - name: Skylar Walsh
 date: 2025-11-11

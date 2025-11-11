@@ -12,8 +12,8 @@
     "date": "2025-11-11",
     "categories": [],
     "contents": "\r\nMy assignment for module # 12 is to create a basic Social Network Visualization using Python with networkx and plotnine (a ggplot2-style library in Python).\r\nI installed the packages and followed the step-by-step directions provided in the assignment details.\r\n\r\nHere is a screenshot of the graph that was generated:\r\n\r\nReflecting on the process of completing the social network graph using plotnine, what worked well was writing and executing the Python file with a .py extension in Microsoft Visual Studio Code IDE. Also, installing the packages using the Windows Command Prompt terminal worked well.\r\n\r\nI did encounter an error when I first attempted to install the packages in the Python Interactive Terminal:\r\n\r\nI also had to add an extra function to get the plot to display in a GUI window. I added the show() function to the network_plot object with the following line of code:\r\nnetwork_plot.show()\r\nand the plot displayed nicely!\r\nI would use this method again! I have experience with Pyton from both my highschool AP Computer Science course and my Introduction to Programming course here at USF. Python is a powerful open source programming language with many benefits, including the ability to create detailed plots from datasets similar to what we use in RStudio. I think it’s cool that we can use ggplot2 functions in a Python script with the plotnine package.\r\n\r\n\r\n\r\n",
-    "preview": "https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-11-03-module-11-assignment/Mod11Vis.png?raw=true",
-    "last_modified": "2025-11-11T15:44:12-05:00",
+    "preview": "https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-11-11-module-12-assignment/mod12graph.png?raw=true",
+    "last_modified": "2025-11-11T15:46:03-05:00",
     "input_file": "module-12-assignment.knit.md"
   },
   {
