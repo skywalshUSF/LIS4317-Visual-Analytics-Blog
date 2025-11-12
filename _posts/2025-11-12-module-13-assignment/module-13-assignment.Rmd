@@ -1,0 +1,71 @@
+---
+title: "Module 13/Bonus Assignment: Data Visualization and AI"
+description: |
+  Using ChatGPT to Generate and Share Visualizations
+preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-11-11-module-12-assignment/mod12graph.png?raw=true
+author:
+  - name: Skylar Walsh
+date: 2025-11-12
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+My assignment for module \# 13 was to explore how to use ChatGPT to create a data visualization and reflect on the process. This gave me hands-on experience with AI tools in visual analytics and helped me critically assess their usefulness.
+
+1.  Register for ChatGPT (if you don’t already have an account):
+
+I have an account for ChatGPT. Additionally, I explored the interface and I familiarized myself with how ChatGPT works.
+
+2.  Generate a Visualization Using ChatGPT:
+
+The dataset I wanted to visualize in ChatGPT was mtcars.
+
+Here is the resulting visualization from running the generated code that I copied into my RStudio environment:
+
+```{r}
+# Load libraries
+library(ggplot2)
+library(dplyr)
+
+# Define "good cars" as those with mpg > 20 and wt < 3.0
+mtcars$good_car <- ifelse(mtcars$mpg > 20 & mtcars$wt < 3.0, "Good Car", "Other")
+
+# Create the visualization
+ggplot(mtcars, aes(x = wt, y = mpg, color = good_car, size = hp)) +
+  geom_point(alpha = 0.8) +
+  scale_color_manual(values = c("Good Car" = "#2ecc71", "Other" = "#e74c3c")) +
+  labs(
+    title = "Fuel Efficiency vs. Weight in Cars",
+    subtitle = "Highlighting 'Good Cars' (mpg > 20 & weight < 3.0)",
+    x = "Weight (1000 lbs)",
+    y = "Miles per Gallon (mpg)",
+    color = "Car Type",
+    size = "Horsepower"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    legend.position = "bottom"
+  )
+```
+
+3.  Customize and Refine Your Visualization
+
+I have modified the visualization that ChatGPT created and identified the bias from the original image.
+
+4.  Publish on Your Blog
+
+Here is my visualization image in a .png file format:
+
+[![](m13refinedimage.png)](m13refinedimage.png)
+
+I started to create an mtcars dataset visualization from ChatGPT by providing a prompt that states, "Write R code using ggplot2 to create a visualization from the mtcars dataset. I want it to focus on making a graph/chart of good cars." As a result, ChatGPT gave me the code for loading the libraries, defining good cars, and creating the visualization. Then, it gave me a list of bullet points on what the code does, which were color coding the cars, using size to represent horsepower, adding a clear title, subtitle, and legend, and applying a clean theme for aesthetic purposes. When I ran the code and previewed the image, I noticed that the visualization aimed to consider high miles per gallon and lighter weight in determining whether a car was good.
+
+The challenges that I faced from creating the generated visualization all had to do with bias. The biggest bias in ChatGPT's visualization came from how to define good cars. The phrase mpg > 20 and wt < 3.0 assumes that fuel efficiency and low weight are the only measures of a good car. However, other definitions could be just as valid, such as a good car for a racer having high horsepower and acceleration, but not high mpg. There was also bias in the colors, as red mostly means "bad" or "danger" rather than "other," and this is not appropriate for focusing on which group of cars are better. In the end, the visualization I modified worked very well, as my improved version removes most of the bias by using a better color palette, simplified labels, and well-structured layout choices.
+
+I think AI feels like a collaborator in visualization design, but the information it generates needs careful clarification from the user since it can make mistakes and contain bias from some of its training data. It is excellent generating some useful design ideas, but it is important to remain ethical and intentional on whether the information is accurate.
