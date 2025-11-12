@@ -15,17 +15,23 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-My assignment for module \# 13 was to explore how to use ChatGPT to create a data visualization and reflect on the process. This gave me hands-on experience with AI tools in visual analytics and helped me critically assess their usefulness.
+My assignment for module \# 13 was to explore how to use ChatGPT to create a data visualization and to reflect on the process. This gave me hands-on experience with AI tools in visual analytics and helped me critically assess their usefulness.
 
 1.  Register for ChatGPT (if you don’t already have an account):
 
-I have an account for ChatGPT. Additionally, I explored the interface and I familiarized myself with how ChatGPT works.
+I have an account for ChatGPT. Additionally, I explored the interface and familiarized myself with how ChatGPT works.
 
 2.  Generate a Visualization Using ChatGPT:
 
-The dataset I wanted to visualize in ChatGPT was mtcars.
+The dataset I wanted to visualize in ChatGPT was the mtcars dataset.
 
-Here is the resulting visualization from running the generated code that I copied into my RStudio environment:
+This is the generated code that I copied into my RStudio environment:
+
+[![](mod13gptcode.png)](mod13gptcode.png)
+
+This code creates a scatterplot using ggplot2, emphasizing good cars based on miles per gallon and weight.
+
+Here is the resulting visualization from running the generated code in the RStudio environment:
 
 ```{r}
 # Load libraries
@@ -54,9 +60,17 @@ ggplot(mtcars, aes(x = wt, y = mpg, color = good_car, size = hp)) +
   )
 ```
 
+This is a good visualization, but it could use clearer visuals and better aesthetics.
+
 3.  Customize and Refine Your Visualization
 
 I have modified the visualization that ChatGPT created and identified the bias from the original image.
+
+This is the code for the refined visualization:
+
+[![](mod13mycode.png)](mod13mycode.png)
+
+This code is better because it improves readability while keeping the visualization focused on good cars.
 
 4.  Publish on Your Blog
 
@@ -64,8 +78,8 @@ Here is my visualization image in a .png file format:
 
 [![](m13refinedimage.png)](m13refinedimage.png)
 
-I started to create an mtcars dataset visualization from ChatGPT by providing a prompt that states, "Write R code using ggplot2 to create a visualization from the mtcars dataset. I want it to focus on making a graph/chart of good cars." As a result, ChatGPT gave me the code for loading the libraries, defining good cars, and creating the visualization. Then, it gave me a list of bullet points on what the code does, which were color coding the cars, using size to represent horsepower, adding a clear title, subtitle, and legend, and applying a clean theme for aesthetic purposes. When I ran the code and previewed the image, I noticed that the visualization aimed to consider high miles per gallon and lighter weight in determining whether a car was good.
+I started to create an mtcars dataset visualization from ChatGPT by providing a prompt that states, "Write R code using ggplot2 to create a visualization from the mtcars dataset. I want it to focus on making a graph/chart of good cars." As a result, ChatGPT provided code to load the libraries, define good cars, and create the visualization. Then it gave me a list of bullet points outlining what the code does: color-coding vehicles, using size to represent horsepower, adding a clear title, subtitle, and legend, and applying a clean theme for aesthetic purposes. When I ran the code and previewed the image, I noticed that the visualization aimed to consider high miles per gallon and lighter weight in determining whether a car was good.
 
-The challenges that I faced from creating the generated visualization all had to do with bias. The biggest bias in ChatGPT's visualization came from how to define good cars. The phrase mpg > 20 and wt < 3.0 assumes that fuel efficiency and low weight are the only measures of a good car. However, other definitions could be just as valid, such as a good car for a racer having high horsepower and acceleration, but not high mpg. There was also bias in the colors, as red mostly means "bad" or "danger" rather than "other," and this is not appropriate for focusing on which group of cars are better. In the end, the visualization I modified worked very well, as my improved version removes most of the bias by using a better color palette, simplified labels, and well-structured layout choices.
+The challenges I faced in creating the generated visualization all stemmed from bias. The most considerable bias in ChatGPT's visualization came from how it defined good cars. The phrase mpg \> 20 and wt \< 3.0 assumes that fuel efficiency and low weight are the only measures of a good car. However, other definitions could be just as valid, such as a good car for a racer being one with high horsepower and acceleration, but not high mpg. There was also bias in the colors, as red mostly conveys "bad" or "danger" rather than "other," which is not appropriate for evaluating which car group is better. In the end, the visualization I modified worked very well, as my improved version removes most of the bias by using a better color palette, simplified labels, and well-structured layout choices.
 
-I think AI feels like a collaborator in visualization design, but the information it generates needs careful clarification from the user since it can make mistakes and contain bias from some of its training data. It is excellent at generating some useful design ideas, but it is important to remain ethical and intentional on whether the information is accurate.
+I think AI feels like a collaborator in visualization design, but the information it generates needs careful clarification from the user since it can make mistakes and contain bias from some of its training data. It is excellent at generating some practical design ideas, but it is essential to remain ethical and intentional about whether the information is accurate.
