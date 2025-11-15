@@ -1,0 +1,259 @@
+---
+title: "Final Project"
+description: |
+  A Data-Driven Story through Visualizations: Speed vs. Efficiency
+preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-11-12-module-13-assignment/gptlogo.png?raw=true
+author:
+  - name: Skylar Walsh
+date: 2025-11-15
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# A Data-Driven Story told through visualizations: Speed vs. Efficiency
+
+The goal of this project is to use the 'mtcars' dataset in RStudio, in combination with the 'tidyverse' package and 'ggplot2' to find the 'sweet spot' cars; those that balance high Miles Per Gallon (MPG) with a fast Quarter-Mile Time (qsec), a high 'MPG' means good efficiency, and a low 'qsec' means fast acceleration. I will also consider how horsepower (hp) and engine size factor into the analysis.
+
+<hr>
+
+# 1. Visualization: The Core Trade-Off
+
+The first step in this story is to visualize the direct relationship between speed and efficiency. To do this, I will use a scatter plot to see how cars are distributed and identify outliers in the upper-left quadrant, which represents the sweet spot (High 'MPG', Low 'qsec').
+
+## The first plot includes:
+
+### Reference Lines: 
+
+The median 'MPG' and median 'qsec' to divide the plot into four clear quadrants, making the "sweet spot" obvious.
+
+### Color-Coding: 
+
+Highlighting engine Cylinders; colored based on the Number of Cylinders 'cyl' in the engine. This is a crucial factor in the trade-off between speed and efficiency.
+
+<hr>
+
+```{r}
+# Load library
+library(ggplot2)
+
+# Load the built-in mtcars dataset
+data(mtcars)
+
+# Convert row names into column
+mtcars$model <- rownames(mtcars)
+
+# Calculate medians for the reference lines
+median_mpg <- median(mtcars$mpg)
+median_qsec <- median(mtcars$qsec)
+
+# Create Scatter Plot
+ggplot(mtcars, aes(x = qsec, y = mpg)) +
+  # 1. Color-coded by the number of cylinders
+  geom_point(aes(color = as.factor(cyl)), size = 4, alpha = 0.8) +
+  # Add labels for each car model.
+  geom_text(aes(label = model), vjust = -1, size = 3, check_overlap = TRUE) +
+  # Add vertical and horizontal reference lines (the median 'thresholds')
+  geom_vline(xintercept = median_qsec, linetype = "dashed", color = "red", alpha = 0.7) +
+  geom_hline(yintercept = median_mpg, linetype = "dashed", color = "red", alpha = 0.7) +
+  # 2. Customize the color legend name
+  scale_color_discrete(name = "Cylinders") +
+  # Add descriptive labels and titles
+  labs(
+    title = "Efficiency: Speed vs. MPG by Cylinder Count",
+    subtitle = "Fast, Efficient cars are in the 'Sweet Spot' (Upper-Left Quadrant)",
+    x = "Quarter Mile Time",
+    y = "Miles Per Gallon"
+  ) +
+  # Use a clean theme
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold"))
+```
+
+The results help tell the story of the fastest, most efficient cars; the Lotus Europa, Porsche 914-2 are fast, efficient cars with 4 cylinder engines and the Ferrari Dino, Mazda RX4, and Hornet Sportabout are fast efficient cars with 6 cylinder engines. Although the cars with 8 cylinder engines are fast, they are not very fuel efficient. A few Merc's come pretty close to making it into the upper-left quadrant.
+
+<hr>
+
+# 2. Visualization: The Role of Horsepower
+
+A truly efficient car that is also fast must have achieved that speed without massive engine power. By including a third variable, Horsepower (hp) into the scatter plot for multivariate analysis, I can see if the sweet-spot cars identified above are also engine optimized.
+
+## The second plot adds:
+
+### Size:
+
+In the visualization below, the 'size' of the point will represent the car's horsepower. Smaller points indicate less power.
+
+<hr>
+
+```{r}
+# Load necessary libraries
+library(ggplot2)
+
+# Load the built-in mtcars dataset
+data(mtcars)
+mtcars$model <- rownames(mtcars)
+
+# Scatter plot with HP mapped to size and CYL mapped to color
+ggplot(mtcars, aes(x = qsec, y = mpg)) +
+  # Map horsepower (hp) to size, and cylinder count (cyl) to color
+  geom_point(aes(size = hp, color = as.factor(cyl)), alpha = 0.7) +
+  geom_text(aes(label = model), vjust = -1, size = 3, check_overlap = TRUE) +
+  
+  # Update color legend for Cylinders
+  scale_color_discrete(name = "Cylinders") +
+  # Keep size legend for Horsepower
+  scale_size(name = "Horsepower (hp)") +
+  
+  # Update titles/labels
+  labs(
+    title = "Power Cost: Speed & Efficiency by Horsepower and Cylinder",
+    subtitle = "Sweet Spot cars are in the top-left.",
+    x = "Quarter Mile Time",
+    y = "Miles Per Gallon"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold"))
+```
+
+This visualization removes the reference lines for clarity and focuses in on the trend of horsepower; that as engines get bigger, with more cylinders, they do indeed accelerate faster, but the increased power has a cost, and it lies in the fuel efficiency. Clearly, cars with more horsepower get lower fuel efficiency.
+
+<hr>
+
+# 3. Analysis: Correlation Heatmap of Key Variables
+
+This step generates a heatmap to summarize the linear relationships between the key variables, confirming the trade-offs at a glance.
+
+## The third plot visualizes:
+
+### Multivariate relationships: 
+
+The Sweet Spot Indicators: 
+
+The analysis focuses on beating the positive correlation with efficiency & speed; finding cars that defy the trend by having high 'mpg' (efficient) despite having low 'qsec' (fast).
+
+<hr>
+
+```{r}
+# Load necessary libraries
+library(corrplot)
+
+# Load the built-in mtcars dataset
+data(mtcars)
+
+# 1. Select the key variables for the correlation analysis:
+key_vars <- mtcars[, c("mpg", "qsec", "hp", "cyl")]
+
+# 2. Calculate the correlation matrix
+cor_matrix <- cor(key_vars)
+
+# 3. Create the correlation heatmap using corrplot
+corrplot(cor_matrix,
+         method = "color",
+         type = "upper",
+         order = "hclust", 
+         diag = FALSE,
+         addCoef.col = "black", 
+         tl.col = "black",      
+         tl.srt = 45
+)
+```
+
+The output clearly shows:
+
+Strong Negative Correlations: 
+
+A strong negative relationship between 'MPG' and Horsepower 'hp'. This confirms that bigger, heavier, and more powerful engines lead to worse fuel efficiency.
+
+Positive Correlations with Speed:
+
+There is a strong positive correlation between 'hp' and 'cyl' inferring that more cylinders likely produces more horsepower.
+
+I also see that 'MPG' and 'qsec' are likely positively correlated, as 'qsec' increases, 'mpg' also tends to increase, which is counter-intuitive for speed, but a higher 'qsec' means slower acceleration. Thus, the correlation confirms that slower (higher 'qsec') cars tend to be more efficient (higher 'mpg').
+
+<hr>
+
+# 4. Conclusive results: 
+
+Identifying the Top Contenders is one of the final steps by providing a clean, data-driven list of the top contenders. I define "fast and efficient" as any car that is above the median 'MPG' and below the median 'qsec'.
+
+## The fourth plot visualizes:
+
+### Comparative analysis: 
+
+The winners!!! 
+
+<hr>
+
+```{r}
+# Load necessary libraries
+library(ggplot2)
+library(dplyr)
+
+# --- 1. Ensure Top Contenders Data is Ready (re-run if necessary) ---
+data(mtcars)
+mtcars$model <- rownames(mtcars)
+median_mpg <- median(mtcars$mpg)
+median_qsec <- median(mtcars$qsec)
+
+top_contenders <- mtcars %>%
+  filter(mpg > median_mpg, qsec < median_qsec) %>%
+  # Arrange by MPG for the bar chart ranking
+  arrange(desc(mpg)) %>%
+  # Convert model to a factor ordered by MPG for correct chart sorting
+  mutate(model_ordered = factor(model, levels = unique(model))) %>%
+  # Select the top 5 for the final display
+  slice_head(n = 5)
+
+# --- 2. Create the Bar Chart with Y-axis limit set to 32 ---
+ggplot(top_contenders, aes(x = model_ordered, y = mpg)) +
+  # Use QSEC (speed) to color the bars.
+  geom_col(aes(fill = qsec)) +
+  
+  # Set the Y-axis limits (0 to 32)
+  scale_y_continuous(limits = c(0, 32), expand = expansion(mult = c(0, 0.1))) +
+  
+  # Add the MPG value on top of each bar
+  geom_text(aes(label = round(mpg, 1)), vjust = -0.5, size = 4) +
+  
+  # Customize the color scale for QSEC (using viridis)
+  scale_fill_viridis_c(
+    name = "Q-Mile Time (sec)",
+    direction = -1,
+    guide = guide_colorbar(title.position = "top")
+  ) +
+  
+  # Labels and theme
+  labs(
+    title = "Top 5 Contenders: MPG Ranked by Speed",
+    subtitle = "Higher MPG & Lower QSEC is best",
+    x = "Car Model",
+    y = "Miles Per Gallon"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
