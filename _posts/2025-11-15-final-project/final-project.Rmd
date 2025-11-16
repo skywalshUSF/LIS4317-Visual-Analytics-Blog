@@ -5,7 +5,7 @@ description: |
 preview: https://github.com/skywalshUSF/LIS4317-Visual-Analytics-Blog/blob/main/_posts/2025-11-15-final-project/mtcars_pic.jpg?raw=true
 author:
   - name: Skylar Walsh
-date: 2025-11-15
+date: 2025-11-16
 output:
   distill::distill_article:
     self_contained: false
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # A Data-Driven Story told through visualizations: Speed vs. Efficiency
 
-The goal of this project is to use the 'mtcars' dataset in RStudio, in combination with the 'tidyverse' package and 'ggplot2' to find the 'sweet spot' cars; those that balance high Miles Per Gallon (MPG) with a fast Quarter-Mile Time (qsec), a high 'MPG' means good efficiency, and a low 'qsec' means fast acceleration. I will also consider how horsepower (hp) and engine size factor into the analysis.
+The goal of this project is to use the 'mtcars' dataset in RStudio, in combination with the 'tidyverse' package and 'ggplot2' to find the 'sweet spot' cars; those that balance high Miles Per Gallon (MPG) with a fast Quarter-Mile Time (qsec), a high 'MPG' means good efficiency, and a low 'qsec' means fast acceleration. I will also consider how horsepower (hp) and engine size factor into the analysis. Stephen Few (2009) mentions that we can use visualization "as an umbrella term to cover all types of visual representations" (p. 12) Therefore, I followed his suggestions throughout his textbook and came up with an effective approach. I am going to create a scatterplot to separate the cars on an X-Y cartesian plane, a heatmap to summarize linear relationships or correlations between key variables, and a bar chart to visualize the rankings. I hypothesize that I can use visualization techniques to uncover the the 'sweet spot' cars in the 'mtcars' data set; those that balance high Miles Per Gallon (MPG) with a fast Quarter-Mile Time (qsec).
 
 <hr>
 
@@ -75,6 +75,8 @@ ggplot(mtcars, aes(x = qsec, y = mpg)) +
 ```
 
 The results help tell the story of the fastest, most efficient cars; the Lotus Europa, Porsche 914-2 are fast, efficient cars with 4 cylinder engines and the Ferrari Dino, Mazda RX4, and Hornet Sportabout are fast efficient cars with 6 cylinder engines. Although the cars with 8 cylinder engines are fast, they are not very fuel efficient. A few Merc's come pretty close to making it into the upper-left quadrant.
+
+Even though there is no perfect correlation in the plot, the use of a scatterplot in addition to color-coding the number of cylinders and implementing reference lines really helped to visualize the direct relationship between speed and fuel efficiency. According to Few (2009), scatterplots "simply and elegantly display two quantitative variables and how these variables are related, using single data points to represent both variables by placing them on a plane (a two-dimensional space) defined by two axes, each with its own quantitative scale." (p. 261) Scatterplots truly can make sense out of data in some way, and it was such an easy technique for analyzing how various cars are distributed.
 
 <hr>
 
@@ -175,17 +177,19 @@ There is a strong positive correlation between 'hp' and 'cyl' inferring that mor
 
 I also see that 'MPG' and 'qsec' are likely positively correlated, as 'qsec' increases, 'mpg' also tends to increase, which is counter-intuitive for speed, but a higher 'qsec' means slower acceleration. Thus, the correlation confirms that slower (higher 'qsec') cars tend to be more efficient (higher 'mpg').
 
+I am confident that using a multivariate heatmap was the best way to measure the correlation between the key variables. According to Few (2009), "heatmaps are visual displays that encode quantitative values as variations in color." (p.284) Since I am aiming to display multivariate data and that my colors have been chosen wisely, the multivariate heatmap best illustrates linear relationships between key variables. On my mtcars heat map, I am encoding values on tiles that have varying relationships between variables.
+
 <hr>
 
 # 4. Conclusive results: 
 
-Identifying the Top Contenders is one of the final steps by providing a clean, data-driven list of the top contenders. I define "fast and efficient" as any car that is above the median 'MPG' and below the median 'qsec'.
+Identifying the Top Contenders is one of the final steps by providing a clean, data-driven list of the top contenders. I define "fast and efficient" as any car that is above the median 'MPG' and below the median 'qsec'. These are the official cars that are considered to be sweet spot cars. By using a bar graph, I was able to compare the top five vehicles that have a combination of both high MPG and low QSEC using comparative analysis. According to Few (2009),"Bar graphs are much more effective than pie charts for analyzing ranking and part-to-whole relationships." (p. 192) Therefore, a bar chart that shows the top 5 contenders out of all the cars in the dataset is a great choice to visualize the results.
 
 ## The fourth plot visualizes:
 
 ### Comparative analysis: 
 
-The winners!!! 
+Visualizing the sweet spot cars !!! 
 
 <hr>
 
@@ -241,6 +245,19 @@ ggplot(top_contenders, aes(x = model_ordered, y = mpg)) +
   )
 ```
 
+<hr>
+
+# Conclusion
+
+<hr>
+
+This project successfully utilized Stephen Few's principles to identify the optimal "sweet spot" cars in the mtcars dataset, with the key finding being that 4-cylinder engines (Lotus Europa, Porsche 914-2) offer the best balance of high efficiency (MPG) and fast acceleration (low qsec), decisively outperforming all other cylinder types in that desirable quadrant. The implications of this data-driven story are that for consumer choice or engineering optimization, the focus should be on maximizing efficiency per unit of horsepower, as the correlation heatmap confirmed the strong inverse relationship between Horsepower and MPG, reinforcing the economic trade-off of speed for fuel consumption. For future directions, the analysis could be extended to a multivariate ranking system that balances HP per weight and MPG per cylinder to uncover engine optimization ratios, or by segmenting the data using trellising to explore if the speed/efficiency trade-off is significantly different across other categorical variables like transmission type (AM/VS) or car weight.
+
+<hr>
+
+References:
+
+Few, S. (2009). Now you see it: simple visualization techniques for quantitative analysis. Analytics Press.
 
 
 
